@@ -1,3 +1,4 @@
 server:
   servlet:
-     context-path: /cliente-pet/api
+      context-path: /cliente-pet/api
+     
