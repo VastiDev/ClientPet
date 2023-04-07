@@ -37,7 +37,9 @@ public class ClienteApplicationService implements ClienteService {
 	}
 	@Override
 	public ClienteDetalhadoResponse buscaClienteAtravesId(UUID idCliente) {
-		// TODO Auto-generated method stub
+		log.info("[inicia]ClienteApplicationService - buscaClienteAtravesId");	
+		log.info("[finaliza]ClienteApplicationService - buscaClienteAtravesId");
+		
 		return null;
 	}
 
