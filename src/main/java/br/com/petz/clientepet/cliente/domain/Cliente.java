@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.com.petz.clientepet.cliente.application.api.ClienteAlteraRequest;
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -63,5 +64,20 @@ public class Cliente {
 	
 	}
 
+	public void altera(ClienteAlteraRequest clienteAlteraRequest) {
+		this.nomeCompleto = clienteAlteraRequest.getNomeCompleto();
+		this.celular = clienteAlteraRequest.getCelular();
+		this.telefone = clienteAlteraRequest.getTelefone();
+		this.sexo = clienteAlteraRequest.getSexo();
+		this.dataNascimento = clienteAlteraRequest.getDataNascimento();
+		this.aceitaTermos = clienteAlteraRequest.getAceitaTermos();
+		this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
+		
+		
+	}
+
 	
+		
 }
+
+	
