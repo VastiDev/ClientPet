@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/v1/cliente/{idCliente}/pet")
+@RequestMapping("/v1/pet")
 public interface PetAPI {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	PetResponse postPet(@PathVariable UUID idCliente, 
-			@Valid @RequestBody PetRequest clienteRequest);
+			@Valid @RequestBody PetRequest petRequest);
 	
 
 }
