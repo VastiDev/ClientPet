@@ -28,7 +28,7 @@ public class PetController implements PetAPI {
 		log.info("[idCliente]{}", idCliente);
 		List<PetClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComId(idCliente);
 		log.info("[finaliza], PetController - getPetsDoCliente");
-		return null;
+		return petsDoCliente;
 	}
 
 }
