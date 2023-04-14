@@ -1,6 +1,8 @@
 package br.com.petz.clientepet.pet.application.api;
 
+import br.com.petz.clientepet.cliente.application.api.ClienteAlteracaoRequest;
 import br.com.petz.clientepet.pet.application.service.PetService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +54,14 @@ public class PetController implements PetAPI {
 		log.info("[start] PetController - deletePetDoClienteComId");
 		
 		
+		
+	}
+
+	@Override
+	public void patchPet(UUID idCliente, UUID idPet, @Valid ClienteAlteracaoRequest clienteAlteracaoRequest) {
+		log.info("[start] PetController - patchPet");
+		log.info("[IdCliente] {} - [idPet] {}", idCliente, idPet);
+		log.info("[finish] PetController - patchPet");
 		
 	}
 }

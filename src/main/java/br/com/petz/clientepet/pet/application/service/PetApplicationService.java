@@ -59,6 +59,8 @@ public class PetApplicationService implements PetService {
 		log.info("[finaliza] PetApplicationService - deletaPetDoClienteComId");
 		
 		
+		
+		
 	}
 
 }
