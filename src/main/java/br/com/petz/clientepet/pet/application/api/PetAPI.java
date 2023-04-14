@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.petz.clientepet.cliente.application.api.ClienteAlteracaoRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -39,8 +38,8 @@ public interface PetAPI {
 	
 	@PatchMapping(value = "/{idPet}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void patchPet(@PathVariable UUID idCliente,@PathVariable UUID idPet,
-			@Valid @RequestBody ClienteAlteracaoRequest clienteAlteracaoRequest);
+	PetResponse patchPet(@PathVariable UUID idCliente,@PathVariable UUID idPet,
+			@Valid @RequestBody PetAlteracaoRequest petAlteracaoRequest);
 	
 	
 }
