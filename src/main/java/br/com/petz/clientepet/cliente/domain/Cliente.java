@@ -8,20 +8,19 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.petz.clientepet.cliente.application.api.ClienteAlteraRequest;
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
-
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
 @Entity
 public class Cliente {
@@ -75,8 +74,6 @@ public class Cliente {
 		
 		
 	}
-
-	
 		
 }
 

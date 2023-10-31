@@ -6,16 +6,11 @@ import java.util.UUID;
 
 import br.com.petz.clientepet.pet.application.api.PetAlteracaoRequest;
 import br.com.petz.clientepet.pet.application.api.PetRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+
 public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,17 +61,21 @@ public class Pet {
 		this.dataHoraDoCadastro = LocalDateTime.now();
 	}
 
-	public void altera(PetAlteracaoRequest petRequest) {
-		this.nomePet = petRequest.getNomePet();
-		this.porte = petRequest.getPorte();
-		this.tipo = petRequest.getTipo();
-		this.microchip = petRequest.getMicrochip();
-		this.raça = petRequest.getRaça();
-		this.sexo = petRequest.getSexo();
-		this.pelagemCor = petRequest.getPelagemCor();
-		this.rga = petRequest.getRga();
-		this.dataNascimento = petRequest.getDataNascimento();
-		this.peso = petRequest.getPeso();
+	public Pet() {
+
+	}
+
+	public void altera(PetAlteracaoRequest petAlteracaoRequest) {
+		this.nomePet = petAlteracaoRequest.getNomePet();
+		this.porte = petAlteracaoRequest.getPorte();
+		this.tipo = petAlteracaoRequest.getTipo();
+		this.microchip = petAlteracaoRequest.getMicrochip();
+		this.raça = petAlteracaoRequest.getRaça();
+		this.sexo = petAlteracaoRequest.getSexo();
+		this.pelagemCor = petAlteracaoRequest.getPelagemCor();
+		this.rga = petAlteracaoRequest.getRga();
+		this.dataNascimento = petAlteracaoRequest.getDataNascimento();
+		this.peso = petAlteracaoRequest.getPeso();
 		this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
 		
 		

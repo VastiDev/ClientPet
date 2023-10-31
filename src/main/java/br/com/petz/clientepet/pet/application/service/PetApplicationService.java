@@ -6,14 +6,16 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import br.com.petz.clientepet.cliente.application.service.ClienteService;
+import br.com.petz.clientepet.pet.application.api.PetAlteracaoRequest;
 import br.com.petz.clientepet.pet.application.api.PetClienteDetalheResponse;
 import br.com.petz.clientepet.pet.application.api.PetClienteListResponse;
 import br.com.petz.clientepet.pet.application.api.PetRequest;
 import br.com.petz.clientepet.pet.application.api.PetResponse;
 import br.com.petz.clientepet.pet.domain.Pet;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import javax.validation.Valid;
 
 @Service
 @Log4j2
@@ -59,6 +61,17 @@ public class PetApplicationService implements PetService {
 		log.info("[finaliza] PetApplicationService - deletaPetDoClienteComId");
 		
 		
+		
+		
+	}
+
+	@Override
+	public void alteraPetDoClienteComId(UUID idCliente, UUID idPet, PetAlteracaoRequest petAlteracaoRequest) {
+		log.info("[inicia] PetApplicationService - alteraPetDoClienteComId");
+		clienteService.buscaClienteAtravesId(idCliente);
+		Pet pet = petRepository.buscaPetPeloId(idPet);
+		pet.altera(petAlteracaoRequest);		
+		log.info("[finaliza] PetApplicationService - alteraPetDoClienteComId");
 		
 		
 	}

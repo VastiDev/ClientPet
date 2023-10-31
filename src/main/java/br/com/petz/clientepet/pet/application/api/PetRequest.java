@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import br.com.petz.clientepet.pet.domain.Porte;
 import br.com.petz.clientepet.pet.domain.SexoPet;
 import br.com.petz.clientepet.pet.domain.TipoPet;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Value;
 
 @Value

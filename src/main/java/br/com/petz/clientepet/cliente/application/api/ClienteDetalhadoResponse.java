@@ -28,4 +28,9 @@ public class ClienteDetalhadoResponse {
         this.aceitaTermos = cliente.getAceitaTermos();
         this.dataHoraDoCadastro = cliente.getDataHoraDoCadastro();
     }
+
+	public void adicionaCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
 }
