@@ -3,6 +3,7 @@ package br.com.petz.clientepet.cliente.application.service;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.petz.clientepet.validCpf.applicationservice.ValidCpfApplicationService;
 import org.springframework.stereotype.Service;
 
 import br.com.petz.clientepet.cliente.application.api.ClienteAlteraRequest;
@@ -17,12 +18,13 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-
 public class ClienteApplicationService implements ClienteService {
-	private  ClienteRepository clienteRepository;
+	private final ClienteRepository clienteRepository;
+	private final ValidCpfApplicationService validCpfApplicationService;
 	@Override
 	public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
 		log.info("[inicia]ClienteApplicationService - criaCliente");
+		validCpfApplicationService.validaCpfdoCliente(clienteRequest.getCpf());
 		Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
 		log.info("[finaliza]ClienteApplicationService - criaCliente");
 		return ClienteResponse.builder()
