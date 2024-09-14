@@ -3,6 +3,10 @@ package br.com.petz.clientepet.cliente.application.service;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.petz.clientepet.endereco.api.EnderecoResponse;
+import br.com.petz.clientepet.endereco.api.ViaCepClient;
+import br.com.petz.clientepet.endereco.domain.Endereco;
+import br.com.petz.clientepet.endereco.service.EnderecoService;
 import br.com.petz.clientepet.validCpf.applicationservice.ValidCpfApplicationService;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +25,30 @@ import lombok.extern.log4j.Log4j2;
 public class ClienteApplicationService implements ClienteService {
 	private final ClienteRepository clienteRepository;
 	private final ValidCpfApplicationService validCpfApplicationService;
+	private final EnderecoService enderecoService;
+	private final ViaCepClient viaCepClient; // Injete o ViaCepClient
+
+
 	@Override
 	public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
 		log.info("[inicia]ClienteApplicationService - criaCliente");
 		validCpfApplicationService.validaCpfdoCliente(clienteRequest.getCpf());
-		Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
+
+		Cliente cliente = new Cliente(clienteRequest);
+		// Supondo que clienteRequest tenha um campo para CEP
+		Endereco endereco = enderecoService.buscaEnderecoPorCep(clienteRequest.getCep());
+		if (endereco != null) {
+			cliente.setEndereco(endereco);
+			// Aqui você pode salvar o cliente e o endereço no banco de dados
+		}
+
+		Cliente clienteSalvo = clienteRepository.salva(cliente);
 		log.info("[finaliza]ClienteApplicationService - criaCliente");
 		return ClienteResponse.builder()
-				.idCliente(cliente.getIdCliente())
+				.idCliente(clienteSalvo.getIdCliente())
 				.build();
 	}
+
 	@Override
 	public List<ClienteListResponse> buscaTodosClientes() {
 		log.info("[inicia]ClienteApplicationService - buscaTodosClientes");
@@ -61,8 +79,6 @@ public class ClienteApplicationService implements ClienteService {
 		cliente.altera(clienteAlteraRequest);
 		clienteRepository.salva(cliente);
 		log.info("[finaliza]ClienteApplicationService - patchAlteraCliente");
-		
-		
 		
 	}
 

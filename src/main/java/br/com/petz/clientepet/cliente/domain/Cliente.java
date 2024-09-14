@@ -4,18 +4,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.com.petz.clientepet.endereco.domain.Endereco;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.petz.clientepet.cliente.application.api.ClienteAlteraRequest;
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import lombok.AccessLevel;
 import lombok.Data;
 
@@ -31,9 +31,18 @@ public class Cliente {
 	@NotBlank
 	private String nomeCompleto;
 	@NotBlank
-	@Email
 	@Column(unique = true)
 	private String email;
+
+	@NotBlank(message = "O CEP não pode ser vazio")
+	@Pattern(regexp = "^\\d{5}-?\\d{3}$", message = "Formato de CEP inválido")
+	private String cep;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id", referencedColumnName = "idEndereco")
+	private Endereco endereco;
+
+
 	@NotBlank
 	private String celular;
 	private String telefone;
@@ -53,6 +62,7 @@ public class Cliente {
 	public Cliente(ClienteRequest clienteRequest) {
 		this.nomeCompleto = clienteRequest.getNomeCompleto();
 		this.email = clienteRequest.getEmail();
+		this.cep = clienteRequest.getCep();
 		this.celular = clienteRequest.getCelular();
 		this.telefone = clienteRequest.getTelefone();
 		this.sexo = clienteRequest.getSexo();

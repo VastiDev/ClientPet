@@ -1,15 +1,28 @@
 server:
   servlet:
     context-path: /cliente-pet/api
-    
-spring:
-  datasource:
-    url: jdbc:h2:mem:demodb
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+spring:
+  application:
+    name: cliente-pet
+  datasource:
+    ##url: jdbc:postgresql://clientpetdb.cuzcrbj17ugj.us-east-1.rds.amazonaws.com:5432/clientpetdb
+    url: jdbc:postgresql://localhost:5432/clientpetdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+
+logging:
+  level:
+    br.com.petz: debug

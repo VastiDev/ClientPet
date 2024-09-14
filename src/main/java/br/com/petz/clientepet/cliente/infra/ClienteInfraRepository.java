@@ -25,6 +25,14 @@ public class ClienteInfraRepository implements ClienteRepository {
 		return cliente;
 	}
 
+	/*@Override
+	public Cliente salva(Cliente cliente) {
+		log.info("[inicia] ClienteInfraRepository - salva");
+		Cliente clienteSalvo = clienteSpringDataJPARepository.save(cliente);
+		log.info("[finaliza] ClienteInfraRepository - salva");
+		return clienteSalvo;
+	}*/
+
 	@Override
 	public List<Cliente> buscaTodosClientes() {
 		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");

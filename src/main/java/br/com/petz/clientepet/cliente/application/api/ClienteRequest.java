@@ -18,6 +18,9 @@ public class ClienteRequest {
 	@Email
 	private String email;
 	@NotBlank
+	private String cep;
+
+	@NotBlank
 	private String celular;
 	private String telefone;
 	private Sexo sexo;
@@ -28,3 +31,4 @@ public class ClienteRequest {
 	@NotNull
 	private Boolean aceitaTermos;
 }
+
