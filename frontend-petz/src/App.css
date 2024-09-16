@@ -1,0 +1,21 @@
+/* src/App.css */
+body {
+  background-color: #FFFFE0; /* Amarelo claro */
+  color: #000080; /* Azul escuro */
+  margin: 0;
+  padding-bottom: 60px; /* Espaço para o rodapé fixo */
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, select, button, label {
+  margin: 5px;
+}
